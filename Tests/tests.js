@@ -75,3 +75,25 @@ describe("make", function () {
         chai.expect(square.equalSides).to.be.true;
     });
 });
+
+describe("indexMap", function () {
+    properties.UnitSquare = [3, 5];
+
+    var ObjectMaker = new ObjectMakr({
+        "inheritance": inheritance,
+        "properties": properties,
+        "indexMap": indexMap
+    });
+
+    it("stores indexMap", function () {
+        chai.expect(ObjectMaker.getIndexMap()).to.be.deep.equal(indexMap);
+    });
+
+    it("makes using indexMap", function () {
+        var unitSquare = ObjectMaker.make("UnitSquare");
+
+        chai.expect(unitSquare.width).to.be.equal(3);
+        chai.expect(unitSquare.height).to.be.equal(5);
+        chai.expect(unitSquare.getArea()).to.be.equal(15);
+    })
+});

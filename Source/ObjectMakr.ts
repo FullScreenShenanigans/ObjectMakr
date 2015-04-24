@@ -2,7 +2,7 @@ interface ObjectMakrSettings {
     inheritance: any;
     properties?: any;
     doPropertiesFull?: boolean;
-    indexMap?: string[];
+    indexMap?: any;
     giveFunctionsNames?: boolean;
     onMake?: string;
 }
@@ -83,8 +83,8 @@ class ObjectMakr {
     // properties for each type (rather than missing inherited attributes).
     private propertiesFull: any;
 
-    // Optionally, how properties can be mapped from an array to an object.
-    private indexMap: string[];
+    // Optionally, how properties can be mapped from an object to keys.
+    private indexMap: any;
 
     // Optionally, whether Functions should have their own names (requires
     // internal usage of eval).
@@ -108,7 +108,7 @@ class ObjectMakr {
      * @param {Boolean} [giveFunctionsName]   Whether Functions should have 
      *                                        their own names (by defualt, 
      *                                        false).
-     * @param {Object} [indexMap]   Alternative aliases for properties as 
+     * @param {Mixed} [indexMap]   Alternative aliases for properties as 
      *                              shorthand.
      * @param {String} [onMake]   A String index for each generated Object's
      *                            Function to be run when made.
@@ -199,6 +199,13 @@ class ObjectMakr {
      */
     hasFunction(type: string): boolean {
         return this.functions.hasOwnProperty(type);
+    }
+
+    /**
+     * @return {Mixed} The optional mapping of indices.
+     */
+    getIndexMap(): any {
+        return this.indexMap;
     }
 
 
