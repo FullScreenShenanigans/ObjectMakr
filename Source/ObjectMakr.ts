@@ -166,7 +166,7 @@ class ObjectMakr {
     /**
      * @return {Object} The full properties Object, if doPropertiesFull is on.
      */
-    getFullProperties = function (): any {
+    getFullProperties(): any {
         return this.propertiesFull;
     }
 

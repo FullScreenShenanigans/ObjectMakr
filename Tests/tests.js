@@ -2,9 +2,8 @@ var ObjectMaker,
     inheritance = {
         "Shape": {
             "Rectangle": {
-                "Square": {
-                    "UnitSquare": {}
-                }
+                "Square": {},
+                "TwoByFour": {}
             }
         }
     },
@@ -32,14 +31,14 @@ describe("constructor", function () {
     it("initializes inheritance", function () {
         chai.expect(new ObjectMakr({
             "inheritance": inheritance
-        }).getInheritance()).to.be.deep.equal(inheritance);
+        }).getInheritance()).to.deep.equal(inheritance);
     });
 
     it("initializes properties", function () {
         chai.expect(new ObjectMakr({
             "inheritance": inheritance,
             "properties": properties
-        }).getProperties()).to.be.deep.equal(properties);
+        }).getProperties()).to.deep.equal(properties);
     });
 });
 
@@ -53,7 +52,7 @@ describe("make", function () {
         ObjectMaker.make("Shape");
         ObjectMaker.make("Rectangle");
         ObjectMaker.make("Square");
-        ObjectMaker.make("UnitSquare");
+        ObjectMaker.make("TwoByFour");
     });
 
     it("throws an error for unknown objects", function () {
@@ -67,17 +66,17 @@ describe("make", function () {
             rectangle = ObjectMaker.make("Rectangle"),
             square = ObjectMaker.make("Square");
 
-        chai.expect(shape.numSides).to.be.undefined;
+        chai.expect(shape.numSides).to.undefined;
 
-        chai.expect(rectangle.numSides).to.be.equal(4);
-        chai.expect(rectangle.equalSides).to.be.false;
+        chai.expect(rectangle.numSides).to.equal(4);
+        chai.expect(rectangle.equalSides).to.false;
 
-        chai.expect(square.equalSides).to.be.true;
+        chai.expect(square.equalSides).to.true;
     });
 });
 
 describe("indexMap", function () {
-    properties.UnitSquare = [3, 5];
+    properties.TwoByFour = [2, 4];
 
     var ObjectMaker = new ObjectMakr({
         "inheritance": inheritance,
@@ -86,14 +85,35 @@ describe("indexMap", function () {
     });
 
     it("stores indexMap", function () {
-        chai.expect(ObjectMaker.getIndexMap()).to.be.deep.equal(indexMap);
+        chai.expect(ObjectMaker.getIndexMap()).to.deep.equal(indexMap);
     });
 
     it("makes using indexMap", function () {
-        var unitSquare = ObjectMaker.make("UnitSquare");
+        var plank = ObjectMaker.make("TwoByFour");
 
-        chai.expect(unitSquare.width).to.be.equal(3);
-        chai.expect(unitSquare.height).to.be.equal(5);
-        chai.expect(unitSquare.getArea()).to.be.equal(15);
-    })
+        chai.expect(plank.width).to.equal(2);
+        chai.expect(plank.height).to.equal(4);
+        chai.expect(plank.getArea()).to.equal(8);
+    });
+});
+
+describe("propertiesFull", function () {
+    var ObjectMaker = new ObjectMakr({
+        "inheritance": inheritance,
+        "properties": properties,
+        "doPropertiesFull": true
+    });
+
+    it("stores regular properties correctly", function () {
+        chai.expect(ObjectMaker.getFullPropertiesOf("Shape")).to.deep.equal({});
+        chai.expect(Object.keys(ObjectMaker.getFullPropertiesOf("Rectangle"))).to.deep.equal([
+            "numSides", "equalSides", "getArea"
+        ]);
+    });
+
+    it("percolates properties down", function () {
+        chai.expect(Object.keys(ObjectMaker.getFullPropertiesOf("Square"))).to.deep.equal([
+                "numSides", "equalSides", "getArea"
+        ]);
+    });
 });
