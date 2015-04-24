@@ -42,3 +42,36 @@ describe("constructor", function () {
         }).getProperties()).to.be.deep.equal(properties);
     });
 });
+
+describe("make", function () {
+    var ObjectMaker = new ObjectMakr({
+        "inheritance": inheritance,
+        "properties": properties
+    });
+
+    it("doesn't throw an error for known objects", function () {
+        ObjectMaker.make("Shape");
+        ObjectMaker.make("Rectangle");
+        ObjectMaker.make("Square");
+        ObjectMaker.make("UnitSquare");
+    });
+
+    it("throws an error for unknown objects", function () {
+        chai.expect(function () {
+            ObjectMaker.make("nope")
+        }).to.throw("Unknown type given to ObjectMakr: nope");
+    });
+
+    it("creates basic objects", function () {
+        var shape = ObjectMaker.make("Shape"),
+            rectangle = ObjectMaker.make("Rectangle"),
+            square = ObjectMaker.make("Square");
+
+        chai.expect(shape.numSides).to.be.undefined;
+
+        chai.expect(rectangle.numSides).to.be.equal(4);
+        chai.expect(rectangle.equalSides).to.be.false;
+
+        chai.expect(square.equalSides).to.be.true;
+    });
+});
