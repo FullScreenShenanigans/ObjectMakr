@@ -17,5 +17,6 @@ declare module ObjectMakr {
         getFunction(name: string): Function;
         hasFunction(name: string): boolean;
         getIndexMap(): any;
+        make(name: string, settings?: any): any;
     }
 }
