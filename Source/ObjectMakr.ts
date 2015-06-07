@@ -1,13 +1,7 @@
+/// <reference path="ObjectMakr.d.ts" />
+
 module ObjectMakr {
     "use strict";
-
-    export interface IObjectMakrSettings {
-        inheritance: any;
-        properties?: any;
-        doPropertiesFull?: boolean;
-        indexMap?: any;
-        onMake?: string;
-    }
 
     /**
      * ObjectMakr
@@ -19,7 +13,7 @@ module ObjectMakr {
      * 
      * @author "Josh Goldberg" <josh@fullscreenmario.com>
      */
-    export class ObjectMakr {
+    export class ObjectMakr implements IObjectMakr {
         // The sketch of class inheritance, keyed by name.
         private inheritance: any;
 
@@ -131,19 +125,19 @@ module ObjectMakr {
         }
 
         /**
-         * @param {String} type   The name of a class to retrieve.
+         * @param {String} name   The name of a class to retrieve.
          * @return {Function}   The constructor for the given class.
          */
-        getFunction(type: string): Function {
-            return this.functions[type];
+        getFunction(name: string): Function {
+            return this.functions[name];
         }
 
         /**
          * @param {String} type   The name of a class to check for.
          * @return {Boolean} Whether that class exists.
          */
-        hasFunction(type: string): boolean {
-            return this.functions.hasOwnProperty(type);
+        hasFunction(name: string): boolean {
+            return this.functions.hasOwnProperty(name);
         }
 
         /**
