@@ -15,7 +15,20 @@ var sources = (function () {
 
 var tests = {
     "ObjectMakr": [
-        "_"
+        "_",
+        "getFullProperties",
+        "getFullPropertiesOf",
+        "getFunction",
+        "getIndexMap",
+        "getInheritance",
+        "getProperties",
+        "getPropertiesOf",
+        "hasFunction"//,
+        //"make",
+        //"processFunctions",
+        //"processProperties",
+        //"processPropertyArray",
+        //"proliferate"
     ]
 };
 
