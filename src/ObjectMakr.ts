@@ -62,8 +62,7 @@ export class ObjectMakr implements IObjectMakr {
         this.doPropertiesFull = settings.doPropertiesFull;
         this.indexMap = settings.indexMap;
         this.onMake = settings.onMake;
-
-        this.functions = {};
+        this.functions = settings.functions || {};
 
         if (this.doPropertiesFull) {
             this.propertiesFull = {};
@@ -226,15 +225,17 @@ export class ObjectMakr implements IObjectMakr {
         // For each name in the current object:
         for (let name in base) {
             if (base.hasOwnProperty(name)) {
-                this.functions[name] = new Function() as IClassFunction;
+                if (!this.functions[name]) {
+                    this.functions[name] = new Function() as IClassFunction;
 
-                // This sets the Function as inheriting from the parent
-                this.functions[name].prototype = new parent();
-                this.functions[name].prototype.constructor = this.functions[name];
+                    // This sets the Function as inheriting from the parent
+                    this.functions[name].prototype = new parent();
+                    this.functions[name].prototype.constructor = this.functions[name];
+                }
 
                 // Add each property from properties to the Function prototype
                 for (let ref in this.properties[name]) {
-                    if (this.properties[name].hasOwnProperty(ref)) {
+                    if (this.properties[name].hasOwnProperty(ref) && !this.functions[name].prototype[ref]) {
                         this.functions[name].prototype[ref] = this.properties[name][ref];
                     }
                 }

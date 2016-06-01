@@ -63,6 +63,11 @@ export interface IObjectMakrSettings {
      * be run when made.
      */
     onMake?: string;
+
+    /**
+     * Optionally, a custom functions mapping for the classes can be passed in
+     */
+    functions?: IClassFunctions;
 }
 
 /**
