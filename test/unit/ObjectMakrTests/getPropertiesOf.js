@@ -6,20 +6,17 @@ define(["mocks"], function (mocks) {
             // Arrange
             var obj = mocks.mockObjectMakr();
 
-            // Act
             var properties = {
                         "name": "",
                         "weight": 0,
-                        "age": 0,
-                        "onMake": function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
-                        }
+                        "age": 0
                     };
 
+            // Act
+            var newObj = obj.getPropertiesOf("Animal");
+
             // Assert
-            expect(obj.getPropertiesOf("Animal")).to.deep.equal(properties);
+            expect(newObj).to.deep.equal(properties);
         });
     };
 });

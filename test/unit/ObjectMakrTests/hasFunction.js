@@ -6,11 +6,13 @@ define(["mocks"], function (mocks) {
             // Arrange
             var obj = mocks.mockObjectMakr();
 
-            // Act
             var hasFunc = true;
 
+            // Act
+            var newObj = obj.hasFunction("Mammal");
+
             // Assert
-            expect(obj.hasFunction("Animal")).to.equal(hasFunc);
+            expect(newObj).to.equal(hasFunc);
         });
     };
 });

@@ -19,16 +19,17 @@ var tests = {
         "getFullProperties",
         "getFullPropertiesOf",
         "getFunction",
+        "getFunctions",
         "getIndexMap",
         "getInheritance",
         "getProperties",
         "getPropertiesOf",
-        "hasFunction"//,
-        //"make",
-        //"processFunctions",
-        //"processProperties",
-        //"processPropertyArray",
-        //"proliferate"
+        "hasFunction",
+        "make",
+        "processFunctions",
+        "processProperties",
+        "processPropertyArray",
+        "proliferate"
     ]
 };
 

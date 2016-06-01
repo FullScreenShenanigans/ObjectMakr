@@ -6,15 +6,15 @@ define(["mocks"], function (mocks) {
             // Arrange
             var obj = mocks.mockObjectMakr();
 
+            function func(){ new Function()}
+            func.prototype = new obj.functions["Animal"]();
+            func.prototype.constructor = func;
+
             // Act
-            var func = function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
-                        };
+            var animalFunc = obj.getFunction("Mammal");
 
             // Assert
-            expect(obj.getFunction("Animal")).to.deep.equal(func);
+            expect(JSON.stringify(animalFunc)).to.deep.equal(JSON.stringify(func));
         });
     };
 });

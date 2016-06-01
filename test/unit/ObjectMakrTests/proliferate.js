@@ -2,15 +2,23 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("returns the proliferated object", function () {
+        it("proliferates the recipient object", function () {
             // Arrange
             var obj = mocks.mockObjectMakr();
 
+            var obj1 = {},
+                obj2 = {
+                    "color": "blue",
+                    "length": 5,
+                    "weight": 200,
+                    "texture": "smooth"
+                };
+
             // Act
-            var fullProperties = obj.proliferate();
+            obj.proliferate(obj1, obj2);                
 
             // Assert
-            expect(obj.proliferate()).to.deep.equal(fullProperties);
+            expect(obj1).to.deep.equal(obj2);
         });
     };
 });

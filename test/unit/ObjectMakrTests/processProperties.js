@@ -6,11 +6,35 @@ define(["mocks"], function (mocks) {
             // Arrange
             var obj = mocks.mockObjectMakr();
 
+            var properties = {
+                "Creature": ["Pete", 249, 5],
+                "Starfish": ["Sammy", 15, 3],
+                "Rock": ["Tim", 22, 100]
+            };
+
+            var changedProperties = {
+                "Creature": {
+                    "name": "Pete",
+                    "weight": 249,
+                    "age": 5
+                },
+                "Starfish": {
+                    "name": "Sammy",
+                    "weight": 15,
+                    "age": 3
+                },
+                "Rock": {
+                    "name": "Tim",
+                    "weight": 22,
+                    "age": 100
+                }
+            }
+
             // Act
-            var properties = obj.processProperties();
+            obj.processProperties(properties);
 
             // Assert
-            expect(obj.processProperties()).to.deep.equal(properties);
+            expect(properties).to.deep.equal(changedProperties);
         });
     };
 });

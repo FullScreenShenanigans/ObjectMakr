@@ -4,95 +4,64 @@ define(["mocks"], function (mocks) {
 
         it("returns the full properties", function () {
             // Arrange
-            /*var settings = {
-                "inheritance": {
-                    "Animal": {
-                        "Bird":{
-                            "Penguin": {}
-                        },
-                        "Mammal": {
-                            "Dog": {}
-                        }
-                    }
-                },
-                "properties": {
-                    "Animal": {
-                        "name": "",
-                        "weight": 0,
-                        "age": 0,
-                        "onMake": function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
-                        }
-                    }
-                },
-                "doPropertiesFull": true,
-                "indexMap": ["name", "weight", "age"],
-                "onMake": "onMake"/*,
-                "giveFunctionNames": true*/
-            //}*/
             var obj = mocks.mockObjectMakr(/*settings*/);
 
-            // Act
             var fullProperties = {
                     "Animal": {
                         "name": "",
                         "weight": 0,
-                        "age": 0,
-                        "onMake": function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
-                        }
+                        "age": 0
                     },
                     "Bird": {
                         "name": "",
-                        "age": 0,
                         "weight": 0,
-                        "onMake": function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
-                        }
+                        "age": 0
                     },
                     "Penguin": {
                         "name": "",
-                        "age": 0,
                         "weight": 0,
-                        "onMake": function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
+                        "age": 0,
+                        "onMake": function(penguin){
+                            penguin.name = penguin.name + " the Penguin"
                         }
                     },
                     "Mammal": {
                         "name": "",
-                        "age": 0,
                         "weight": 0,
-                        "onMake": function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
-                        }
-                    }/*,
+                        "age": 0
+                    },
                     "Dog": {
                         "name": "",
-                        "age": 0,
                         "weight": 0,
-                        "onMake": function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
+                        "age": 0,
+                        "onMake": function(dog){
+                            dog.name = dog.name + " the Fluffy Dog"
                         }
-                    }*/
-                }
+                    }
+                };
+
+            // Act
+            var prop = obj.getFullProperties();
 
             // Assert
-            // expect(obj.getFullProperties()).to.deep.equal(fullProperties);
+            for(var type in Object.keys(prop)){
+                for(var name in prop[type]){
+                    if(typeof prop[type][name] === "function"){
+                        expect(JSON.stringify(prop[type][name])).to.deep.equal(JSON.stringify(fullProperties[type][name]))
+                    } else{
+                        expect(prop[type][name]).to.deep.equal(fullProperties[type][name]);
+                    }
+                }
+                //if(prop[name] && typeof prop[name] === "function"){
+                //    prop[name] = prop[name].toString();
+                //}
+                //expect(prop[name]).to.deep.equal(fullProperties[name]);
+            }
+
+            //expect(prop).to.deep.equal(fullProperties);
             // expect([1,2,3]).to.deep.equal([1,2]);
             // expect([2,1]).to.deep.equal([1,2]);
-            expect({"car": "same", "cart":"samet"}).to.deep.equal({"cart":"samet", "car":"same"});
+            // expect({"car": "same", "cart":"samet"}).to.deep.equal({"cart":"samet", "car":"same"});
         });
     };
 });

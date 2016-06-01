@@ -21,11 +21,16 @@ define(["ObjectMakr"], function (ObjectMakrModule) {
                     "Animal": {
                         "name": "",
                         "weight": 0,
-                        "age": 0,
-                        "onMake": function(name, age, weight){
-                            this.name = name;
-                            this.age = age;
-                            this.weight = weight;
+                        "age": 0
+                    },
+                    "Penguin": {
+                        "onMake": function(penguin){
+                            penguin.name = penguin.name + " the Penguin"
+                        }
+                    },
+                    "Dog": {
+                        "onMake": function(dog){
+                            dog.name = dog.name + " the Fluffy Dog"
                         }
                     }
                 },

@@ -6,11 +6,13 @@ define(["mocks"], function (mocks) {
             // Arrange
             var obj = mocks.mockObjectMakr();
 
-            // Act
             var indexMap = ["name", "weight", "age"];
 
+            // Act
+            var newObj = obj.getIndexMap();
+
             // Assert
-            expect(obj.getIndexMap()).to.deep.equal(indexMap);
+            expect(newObj).to.deep.equal(indexMap);
         });
     };
 });
