@@ -2,19 +2,19 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("returns the function", function () {
+        it("returns the class function", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             function func(){ new Function()}
-            func.prototype = new obj.functions["Animal"]();
+            func.prototype = new objectMaker.functions["Animal"]();
             func.prototype.constructor = func;
 
             // Act
-            var animalFunc = obj.getFunction("Mammal");
+            var MammalFunc = objectMaker.getFunction("Mammal");
 
             // Assert
-            expect(JSON.stringify(animalFunc)).to.deep.equal(JSON.stringify(func));
+            expect(JSON.stringify(MammalFunc)).to.deep.equal(JSON.stringify(func));
         });
     };
 });

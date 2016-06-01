@@ -4,7 +4,7 @@ define(["mocks"], function (mocks) {
 
         it("returns the inheritance", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             var inheritance = {
                     "Animal": {
@@ -18,10 +18,10 @@ define(["mocks"], function (mocks) {
                 }
 
             // Act
-            var newObj = obj.getInheritance();
+            var actualInheritance = objectMaker.getInheritance();
 
             // Assert
-            expect(newObj).to.deep.equal(inheritance);
+            expect(actualInheritance).to.deep.equal(inheritance);
         });
     };
 });

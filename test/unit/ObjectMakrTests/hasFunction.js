@@ -4,15 +4,15 @@ define(["mocks"], function (mocks) {
 
         it("returns the function", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             var hasFunc = true;
 
             // Act
-            var newObj = obj.hasFunction("Mammal");
+            var actualFunc = objectMaker.hasFunction("Mammal");
 
             // Assert
-            expect(newObj).to.equal(hasFunc);
+            expect(actualFunc).to.equal(hasFunc);
         });
     };
 });

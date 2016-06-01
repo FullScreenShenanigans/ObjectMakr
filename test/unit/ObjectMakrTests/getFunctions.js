@@ -4,13 +4,8 @@ define(["mocks"], function (mocks) {
 
         it("returns the functions", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
-            /*function Animal(){};
-            function Bird(){};
-            function Penguin(){};
-            function Mammal(){};
-            function Dog(){};*/
             var functions = {
                 "Animal": new Function(),
                 "Bird": new Function(),
@@ -39,15 +34,14 @@ define(["mocks"], function (mocks) {
                         }
 
             // Act
-            var newObj = obj.getFunctions();
+            var actualFunctions = objectMaker.getFunctions();
 
             // Assert
-            // expect(newObj).to.deep.equal(functions);
-            for(var type in newObj){
-                if(typeof newObj[type] === "function"){
-                    expect(JSON.stringify(newObj[type])).to.deep.equal(JSON.stringify(functions[type]));
+            for(var type in actualFunctions){
+                if(typeof actualFunctions[type] === "function"){
+                    expect(JSON.stringify(actualFunctions[type])).to.deep.equal(JSON.stringify(functions[type]));
                 } else{
-                    expect(newObj[type]).to.deep.equal(functions[type]);   
+                    expect(actualFunctions[type]).to.deep.equal(functions[type]);   
                 }
             }
         });

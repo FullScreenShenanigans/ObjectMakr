@@ -4,7 +4,7 @@ define(["mocks"], function (mocks) {
 
         it("returns the properties", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             var properties = {
                     "Animal": {
@@ -25,16 +25,15 @@ define(["mocks"], function (mocks) {
                 };
 
             // Act
-            var newObj = obj.getProperties();
+            var actualProperties = objectMaker.getProperties();
 
             // Assert
-            // expect(newObj).to.deep.equal(properties);
-            for(var type in Object.keys(newObj)){
-                for(var name in newObj[type]){
-                    if(typeof newObj[type][name] === "function"){
-                        expect(JSON.stringify(newObj[type][name])).to.deep.equal(JSON.stringify(fullProperties[type][name]))
+            for(var type in actualProperties){
+                for(var name in actualProperties[type]){
+                    if(typeof actualProperties[type][name] === "function"){
+                        expect(JSON.stringify(actualProperties[type][name])).to.deep.equal(JSON.stringify(properties[type][name]))
                     } else{
-                        expect(newObj[type][name]).to.deep.equal(fullProperties[type][name]);
+                        expect(actualProperties[type][name]).to.deep.equal(properties[type][name]);
                     }
                 }
             }

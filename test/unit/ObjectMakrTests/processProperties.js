@@ -2,9 +2,9 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("returns the processed properties", function () {
+        it("processes the properties", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             var properties = {
                 "Creature": ["Pete", 249, 5],
@@ -31,7 +31,7 @@ define(["mocks"], function (mocks) {
             }
 
             // Act
-            obj.processProperties(properties);
+            objectMaker.processProperties(properties);
 
             // Assert
             expect(properties).to.deep.equal(changedProperties);

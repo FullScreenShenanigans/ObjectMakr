@@ -2,9 +2,9 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("returns the full properties of", function () {
+        it("returns the full properties of a specific class", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             var fullProperties = {
                         "name": "",
@@ -13,10 +13,10 @@ define(["mocks"], function (mocks) {
                     }
 
             // Act
-            var newObj = obj.getFullPropertiesOf("Bird");
+            var actualProperties = objectMaker.getFullPropertiesOf("Bird");
 
             // Assert
-            expect(newObj).to.deep.equal(fullProperties);
+            expect(actualProperties).to.deep.equal(fullProperties);
         });
     };
 });

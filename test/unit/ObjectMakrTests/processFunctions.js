@@ -2,9 +2,9 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("returns the processed function", function () {
+        it("makes a function mapping", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             var inheritance = {
                 "Organism": {
@@ -25,8 +25,8 @@ define(["mocks"], function (mocks) {
             functionsMapping["Animal"].prototype.constructer = functionsMapping["Animal"];
 
             // Act
-            obj.processFunctions(inheritance, Object, "Object");
-            var actualMapping = obj.functions;
+            objectMaker.processFunctions(inheritance, Object, "Object");
+            var actualMapping = objectMaker.functions;
 
             // Assert
             // expect(newObj).to.deep.equal(processedFunction);

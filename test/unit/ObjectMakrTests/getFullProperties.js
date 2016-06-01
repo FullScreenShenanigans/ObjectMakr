@@ -4,7 +4,7 @@ define(["mocks"], function (mocks) {
 
         it("returns the full properties", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr(/*settings*/);
+            var objectMaker = mocks.mockObjectMakr();
 
             var fullProperties = {
                     "Animal": {
@@ -41,27 +41,18 @@ define(["mocks"], function (mocks) {
                 };
 
             // Act
-            var prop = obj.getFullProperties();
+            var actualProperties = objectMaker.getFullProperties();
 
             // Assert
-            for(var type in Object.keys(prop)){
-                for(var name in prop[type]){
-                    if(typeof prop[type][name] === "function"){
-                        expect(JSON.stringify(prop[type][name])).to.deep.equal(JSON.stringify(fullProperties[type][name]))
+            for(var type in actualProperties){
+                for(var name in actualProperties[type]){
+                    if(typeof actualProperties[type][name] === "function"){
+                        expect(JSON.stringify(actualProperties[type][name])).to.deep.equal(JSON.stringify(fullProperties[type][name]))
                     } else{
-                        expect(prop[type][name]).to.deep.equal(fullProperties[type][name]);
+                        expect(actualProperties[type][name]).to.deep.equal(fullProperties[type][name]);
                     }
                 }
-                //if(prop[name] && typeof prop[name] === "function"){
-                //    prop[name] = prop[name].toString();
-                //}
-                //expect(prop[name]).to.deep.equal(fullProperties[name]);
             }
-
-            //expect(prop).to.deep.equal(fullProperties);
-            // expect([1,2,3]).to.deep.equal([1,2]);
-            // expect([2,1]).to.deep.equal([1,2]);
-            // expect({"car": "same", "cart":"samet"}).to.deep.equal({"cart":"samet", "car":"same"});
         });
     };
 });

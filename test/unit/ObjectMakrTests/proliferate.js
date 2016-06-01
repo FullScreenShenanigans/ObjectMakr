@@ -2,9 +2,9 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("proliferates the recipient object", function () {
+        it("copies into the recipient object", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             var obj1 = {},
                 obj2 = {
@@ -15,7 +15,7 @@ define(["mocks"], function (mocks) {
                 };
 
             // Act
-            obj.proliferate(obj1, obj2);                
+            objectMaker.proliferate(obj1, obj2);                
 
             // Assert
             expect(obj1).to.deep.equal(obj2);

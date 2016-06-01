@@ -4,15 +4,15 @@ define(["mocks"], function (mocks) {
 
         it("returns the index map", function () {
             // Arrange
-            var obj = mocks.mockObjectMakr();
+            var objectMaker = mocks.mockObjectMakr();
 
             var indexMap = ["name", "weight", "age"];
 
             // Act
-            var newObj = obj.getIndexMap();
+            var actualMap = objectMaker.getIndexMap();
 
             // Assert
-            expect(newObj).to.deep.equal(indexMap);
+            expect(actualMap).to.deep.equal(indexMap);
         });
     };
 });
