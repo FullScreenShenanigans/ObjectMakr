@@ -57,12 +57,15 @@ export class ObjectMakr implements IObjectMakr {
             throw new Error("No inheritance given to ObjectMakr.");
         }
 
-        this.inheritance = settings.inheritance;
-        this.properties = settings.properties || {};
-        this.doPropertiesFull = settings.doPropertiesFull;
-        this.indexMap = settings.indexMap;
-        this.onMake = settings.onMake;
-        this.functions = settings.functions || {};
+        let settingsCopy: IObjectMakrSettings;
+        this.proliferate(settingsCopy, settings);
+
+        this.inheritance = settingsCopy.inheritance;
+        this.properties = settingsCopy.properties || {};
+        this.doPropertiesFull = settingsCopy.doPropertiesFull;
+        this.indexMap = settingsCopy.indexMap;
+        this.onMake = settingsCopy.onMake;
+        this.functions = settingsCopy.functions || {};
 
         if (this.doPropertiesFull) {
             this.propertiesFull = {};
@@ -156,7 +159,7 @@ export class ObjectMakr implements IObjectMakr {
         }
 
         // Create the new object, copying any given settings
-        const output = new this.functions[name]();
+        const output = this.functions[name]();
         if (settings) {
             this.proliferate(output, settings);
         }
@@ -224,44 +227,45 @@ export class ObjectMakr implements IObjectMakr {
     private processFunctions(base: any, parent: IClassFunction, parentName?: string): void {
         // For each name in the current object:
         for (let name in base) {
-            if (base.hasOwnProperty(name)) {
-                if (!this.functions[name]) {
-                    this.functions[name] = new Function() as IClassFunction;
-
-                    // This sets the Function as inheriting from the parent
-                    this.functions[name].prototype = new parent();
-                    this.functions[name].prototype.constructor = this.functions[name];
-                }
-
-                // Add each property from properties to the Function prototype
-                for (let ref in this.properties[name]) {
-                    if (this.properties[name].hasOwnProperty(ref) && !this.functions[name].prototype[ref]) {
-                        this.functions[name].prototype[ref] = this.properties[name][ref];
-                    }
-                }
-
-                // If the entire property tree is being mapped, copy everything
-                // from both this and its parent to its equivalent
-                if (this.doPropertiesFull) {
-                    this.propertiesFull[name] = {};
-
-                    if (parentName) {
-                        for (let ref in this.propertiesFull[parentName]) {
-                            if (this.propertiesFull[parentName].hasOwnProperty(ref)) {
-                                this.propertiesFull[name][ref] = this.propertiesFull[parentName][ref];
-                            }
-                        }
-                    }
-
-                    for (let ref in this.properties[name]) {
-                        if (this.properties[name].hasOwnProperty(ref)) {
-                            this.propertiesFull[name][ref] = this.properties[name][ref];
-                        }
-                    }
-                }
-
-                this.processFunctions(base[name], this.functions[name], name);
+            if (!base.hasOwnProperty(name)) {
+                continue;
             }
+            if (!this.functions[name]) {
+                this.functions[name] = function () { /* */ };
+
+                // This sets the Function as inheriting from the parent
+                this.functions[name].prototype = parent();
+                this.functions[name].prototype.constructor = this.functions[name];
+            }
+
+            // Add each property from properties to the Function prototype
+            for (let ref in this.properties[name]) {
+                if (this.properties[name].hasOwnProperty(ref) && !this.functions[name].prototype[ref]) {
+                    this.functions[name].prototype[ref] = this.properties[name][ref];
+                }
+            }
+
+            // If the entire property tree is being mapped, copy everything
+            // from both this and its parent to its equivalent
+            if (this.doPropertiesFull) {
+                this.propertiesFull[name] = {};
+
+                if (parentName) {
+                    for (let ref in this.propertiesFull[parentName]) {
+                        if (this.propertiesFull[parentName].hasOwnProperty(ref)) {
+                            this.propertiesFull[name][ref] = this.propertiesFull[parentName][ref];
+                        }
+                    }
+                }
+
+                for (let ref in this.properties[name]) {
+                    if (this.properties[name].hasOwnProperty(ref)) {
+                        this.propertiesFull[name][ref] = this.properties[name][ref];
+                    }
+                }
+            }
+
+            this.processFunctions(base[name], this.functions[name], name);
         }
     }
 
