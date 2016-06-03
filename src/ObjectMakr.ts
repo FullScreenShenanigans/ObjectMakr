@@ -230,6 +230,7 @@ export class ObjectMakr implements IObjectMakr {
             if (!base.hasOwnProperty(name)) {
                 continue;
             }
+
             if (!this.functions[name]) {
                 this.functions[name] = function () { /* */ };
 
