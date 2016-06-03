@@ -1,9 +1,10 @@
 define(["ObjectMakr"], function (ObjectMakrModule) {
     var ObjectMakr = ObjectMakrModule.ObjectMakr;
+    var expect = require("chai").expect;
 
     var mocks = {
         /**
-         * 
+         * Returns an instance of ObjectMakr
          */
         mockObjectMakr: function (settings) {
             return new ObjectMakr(settings = {
@@ -36,10 +37,13 @@ define(["ObjectMakr"], function (ObjectMakrModule) {
                 },
                 "doPropertiesFull": true,
                 "indexMap": ["name", "weight", "age"],
-                "onMake": "onMake"/*,
-                "giveFunctionNames": true*/
+                "onMake": "onMake"
             })
-        }
+        },       
+        /**
+         * Specific class name for tests to use
+         */
+        mockClassExample: "Penguin"
     };
 
     return mocks;

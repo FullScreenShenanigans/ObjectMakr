@@ -2,32 +2,37 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("returns an instance of a class", function () {
+        it("object's name is John the Penguin", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
 
-            function Penguin(){ new Function()}
-            Penguin.prototype = new objectMaker.functions["Bird"]();
-            Penguin.prototype.constructer = Penguin;
-            Penguin.prototype["onMake"] = function(penguin){
-                            penguin.name = penguin.name + " the Penguin"
-                        };
-            var peng = new Penguin();
-            peng.name = "John the Penguin";
-            peng.weight = 213;
-            peng.age = 4;
-
             // Act
-            var actualPenguin = objectMaker.make("Penguin", {"name": "John", "weight": 213, "age": 4});
+            var madeObject = objectMaker.make(mocks.mockClassExample, {"name": "John", "weight": 213, "age": 4});
 
             // Assert
-            for(var type in actualPenguin){
-                if(typeof actualPenguin[type] === "function"){
-                    expect(JSON.stringify(actualPenguin[type])).to.deep.equal(JSON.stringify(peng[type]))
-                } else{
-                    expect(actualPenguin[type]).to.deep.equal(peng[type]);
-                }
-            }
+            expect(madeObject.name).to.equal("John the Penguin");
+        });
+        
+        it("object's weight is 213", function () {
+            // Arrange
+            var objectMaker = mocks.mockObjectMakr();
+
+            // Act
+            var madeObject = objectMaker.make(mocks.mockClassExample, {"name": "John", "weight": 213, "age": 4});
+
+            // Assert
+            expect(madeObject.weight).to.equal(213);
+        });
+        
+        it("object's age is 4", function () {
+            // Arrange
+            var objectMaker = mocks.mockObjectMakr();
+
+            // Act
+            var madeObject = objectMaker.make(mocks.mockClassExample, {"name": "John", "weight": 213, "age": 4});
+
+            // Assert
+            expect(madeObject.age).to.equal(4);
         });
     };
 });

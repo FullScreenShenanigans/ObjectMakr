@@ -2,7 +2,7 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("copies into the recipient object", function () {
+        it("deep copies into the recipient object", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
 
