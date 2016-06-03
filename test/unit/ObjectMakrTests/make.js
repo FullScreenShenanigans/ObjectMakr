@@ -7,10 +7,10 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             // Act
-            var madeObject = objectMaker.make(mocks.mockClassExample, {"name": "John", "weight": 213, "age": 4});
+            var madeObject = objectMaker.make(mocks.mockClassExample, {name: "John", weight: 213, age: 4});
 
             // Assert
-            expect(madeObject.name).to.equal("John the Penguin");
+            expect(madeObject["name"]).to.equal("John the Penguin");
         });
         
         it("object's weight is 213", function () {
@@ -18,10 +18,10 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             // Act
-            var madeObject = objectMaker.make(mocks.mockClassExample, {"name": "John", "weight": 213, "age": 4});
+            var madeObject = objectMaker.make(mocks.mockClassExample, {name: "John", weight: 213, age: 4});
 
             // Assert
-            expect(madeObject.weight).to.equal(213);
+            expect(madeObject["weight"]).to.equal(213);
         });
         
         it("object's age is 4", function () {
@@ -29,10 +29,10 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             // Act
-            var madeObject = objectMaker.make(mocks.mockClassExample, {"name": "John", "weight": 213, "age": 4});
+            var madeObject = objectMaker.make(mocks.mockClassExample, {name: "John", weight: 213, age: 4});
 
             // Assert
-            expect(madeObject.age).to.equal(4);
+            expect(madeObject["age"]).to.equal(4);
         });
     };
 });

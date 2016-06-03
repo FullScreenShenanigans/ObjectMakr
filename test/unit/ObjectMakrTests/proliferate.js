@@ -8,10 +8,10 @@ define(["mocks"], function (mocks) {
 
             var obj1 = {},
                 obj2 = {
-                    "color": "blue",
-                    "length": 5,
-                    "weight": 200,
-                    "texture": "smooth"
+                    color: "blue",
+                    length: 5,
+                    weight: 200,
+                    texture: "smooth"
                 };
 
             // Act

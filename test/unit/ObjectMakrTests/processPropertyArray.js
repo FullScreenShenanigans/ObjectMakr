@@ -7,16 +7,16 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             var properties = {
-                "Creature": ["Pete", 249, 5],
-                "Starfish": ["Sammy", 15, 3],
-                "Rock": ["Tim", 22, 100]
+                Creature: ["Pete", 249, 5],
+                Starfish: ["Sammy", 15, 3],
+                Rock: ["Tim", 22, 100]
             };
 
             //Act
             properties["Starfish"] = objectMaker.processPropertyArray(properties["Starfish"]);
 
             // Assert
-            expect(typeof properties.Creature).to.deep.equal(typeof {});
+            expect(typeof properties["Creature"]).to.deep.equal(typeof {});
         });
 
         it("changes the array to an object representation", function () {
@@ -24,16 +24,16 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             var properties = {
-                "Creature": ["Pete", 249, 5],
-                "Starfish": ["Sammy", 15, 3],
-                "Rock": ["Tim", 22, 100]
+                Creature: ["Pete", 249, 5],
+                Starfish: ["Sammy", 15, 3],
+                Rock: ["Tim", 22, 100]
             };
 
             //Act
             properties["Starfish"] = objectMaker.processPropertyArray(properties["Starfish"]);
 
             // Assert
-            expect(typeof properties.Starfish).to.deep.equal(typeof {});
+            expect(typeof properties["Starfish"]).to.deep.equal(typeof {});
         });
 
         it("leaves Rock is unchanged", function () {
@@ -41,16 +41,16 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             var properties = {
-                "Creature": ["Pete", 249, 5],
-                "Starfish": ["Sammy", 15, 3],
-                "Rock": ["Tim", 22, 100]
+                Creature: ["Pete", 249, 5],
+                Starfish: ["Sammy", 15, 3],
+                Rock: ["Tim", 22, 100]
             };
 
             //Act
             properties["Starfish"] = objectMaker.processPropertyArray(properties["Starfish"]);
 
             // Assert
-            expect(typeof properties.Rock).to.deep.equal(typeof {});
+            expect(typeof properties["Rock"]).to.deep.equal(typeof {});
         });
     };
 });

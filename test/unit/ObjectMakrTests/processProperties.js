@@ -7,9 +7,9 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             var properties = {
-                "Creature": ["Pete", 249, 5],
-                "Starfish": ["Sammy", 15, 3],
-                "Rock": ["Tim", 22, 100]
+                Creature: ["Pete", 249, 5],
+                Starfish: ["Sammy", 15, 3],
+                Rock: ["Tim", 22, 100]
             };
 
             // Act
@@ -24,9 +24,9 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             var properties = {
-                "Creature": ["Pete", 249, 5],
-                "Starfish": ["Sammy", 15, 3],
-                "Rock": ["Tim", 22, 100]
+                Creature: ["Pete", 249, 5],
+                Starfish: ["Sammy", 15, 3],
+                Rock: ["Tim", 22, 100]
             };
 
             // Act
@@ -41,9 +41,9 @@ define(["mocks"], function (mocks) {
             var objectMaker = mocks.mockObjectMakr();
 
             var properties = {
-                "Creature": ["Pete", 249, 5],
-                "Starfish": ["Sammy", 15, 3],
-                "Rock": ["Tim", 22, 100]
+                Creature: ["Pete", 249, 5],
+                Starfish: ["Sammy", 15, 3],
+                Rock: ["Tim", 22, 100]
             };
 
             // Act

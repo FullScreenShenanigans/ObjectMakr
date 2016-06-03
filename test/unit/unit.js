@@ -15,7 +15,6 @@ var sources = (function () {
 
 var tests = {
     "ObjectMakr": [
-        "_",
         "make",
         "processFunctions",
         "processProperties",
