@@ -4,7 +4,7 @@ define(["ObjectMakr"], function (ObjectMakrModule) {
 
     var mocks = {
         /**
-         * Returns an instance of ObjectMakr
+         * Returns an instance of ObjectMakr.
          */
         mockObjectMakr: function (settings) {
             return new ObjectMakr(settings = {
@@ -41,7 +41,7 @@ define(["ObjectMakr"], function (ObjectMakrModule) {
             })
         },       
         /**
-         * Specific class name for tests to use
+         * Specific class name for tests to use.
          */
         mockClassExample: "Penguin"
     };
