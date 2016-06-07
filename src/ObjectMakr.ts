@@ -57,8 +57,7 @@ export class ObjectMakr implements IObjectMakr {
             throw new Error("No inheritance given to ObjectMakr.");
         }
 
-        let settingsCopy: IObjectMakrSettings;
-        this.proliferate(settingsCopy, settings);
+        let settingsCopy = this.proliferate({}, settings);
 
         this.inheritance = settingsCopy.inheritance;
         this.properties = settingsCopy.properties || {};
@@ -159,7 +158,7 @@ export class ObjectMakr implements IObjectMakr {
         }
 
         // Create the new object, copying any given settings
-        const output = this.functions[name]();
+        const output = new this.functions[name]();
         if (settings) {
             this.proliferate(output, settings);
         }
@@ -232,10 +231,10 @@ export class ObjectMakr implements IObjectMakr {
             }
 
             if (!this.functions[name]) {
-                this.functions[name] = function () { /* */ };
+                this.functions[name] = class {};
 
                 // This sets the Function as inheriting from the parent
-                this.functions[name].prototype = parent();
+                this.functions[name].prototype = new parent();
                 this.functions[name].prototype.constructor = this.functions[name];
             }
 
@@ -278,7 +277,7 @@ export class ObjectMakr implements IObjectMakr {
      * @param donor   An object whose members are copied to recipient.
      * @param [noOverride]   If recipient properties may be overriden (by default, false).
      */
-    private proliferate(recipient: any, donor: any, noOverride?: boolean): void {
+    private proliferate(recipient: any, donor: any, noOverride?: boolean): any {
         // For each attribute of the donor:
         for (let i in donor) {
             // If noOverride is specified, don't override if it already exists

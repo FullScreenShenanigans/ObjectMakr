@@ -24,7 +24,7 @@ export interface IClassFunctions {
  * Root abstract definition for class Functions.
  */
 export interface IClassFunction {
-    (): any;
+    new (): any;
 }
 
 /**
@@ -65,7 +65,9 @@ export interface IObjectMakrSettings {
     onMake?: string;
 
     /**
-     * Optionally, a custom functions mapping for the classes can be passed in.
+     * Optionally, a custom functions mapping of constructors for the classes can be passed in.
+     * Functions passed in would not be redefined by processFunctions. This allows for pre-existing
+     * classes to be manually manipulated.
      */
     functions?: IClassFunctions;
 }
