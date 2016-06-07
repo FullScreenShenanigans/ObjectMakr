@@ -231,7 +231,7 @@ export class ObjectMakr implements IObjectMakr {
             }
 
             if (!this.functions[name]) {
-                this.functions[name] = class {};
+                this.functions[name] = class { };
 
                 // This sets the Function as inheriting from the parent
                 this.functions[name].prototype = new parent();
