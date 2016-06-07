@@ -2,37 +2,37 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("object's name is John the Penguin", function () {
+        it("copies a string", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
 
             // Act
-            var madeObject = objectMaker.make(mocks.mockClassExample, {name: "John", weight: 213, age: 4});
+            var madeObject = objectMaker.make(mocks.mockClassName, mocks.mockObjectProperties());
 
             // Assert
-            expect(madeObject["name"]).to.equal("John the Penguin");
+            expect(typeof madeObject.name).to.equal("string");
         });
-        
-        it("object's weight is 213", function () {
+
+        it("implements an onMake function", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
 
             // Act
-            var madeObject = objectMaker.make(mocks.mockClassExample, {name: "John", weight: 213, age: 4});
+            var madeObject = objectMaker.make(mocks.mockClassName, mocks.mockObjectProperties());
 
             // Assert
-            expect(madeObject["weight"]).to.equal(213);
+            expect(madeObject.name).to.equal("John the Penguin");
         });
-        
-        it("object's age is 4", function () {
+
+        it("copies a number", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
 
             // Act
-            var madeObject = objectMaker.make(mocks.mockClassExample, {name: "John", weight: 213, age: 4});
+            var madeObject = objectMaker.make(mocks.mockClassName, mocks.mockObjectProperties());
 
             // Assert
-            expect(madeObject["age"]).to.equal(4);
+            expect(typeof madeObject.weight).to.equal("number");
         });
     };
 });
