@@ -13,7 +13,7 @@ define(["mocks"], function (mocks) {
             expect(typeof madeObject.name).to.equal("string");
         });
 
-        it("implements an onMake function", function () {
+        it("copies a function", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
 
@@ -21,7 +21,7 @@ define(["mocks"], function (mocks) {
             var madeObject = objectMaker.make(mocks.mockClassName, mocks.mockObjectProperties());
 
             // Assert
-            expect(madeObject.name).to.equal("John the Penguin");
+            expect(madeObject.wet).to.equal(true);
         });
 
         it("copies a number", function () {

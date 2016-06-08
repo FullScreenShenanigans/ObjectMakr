@@ -2,30 +2,28 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("leaves Object types unchanged", function () {
+        it("only changes the target's type", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
-
             var properties = mocks.mockPropertyArray();
 
-            //Act
+            // Act
             properties.Starfish = objectMaker.processPropertyArray(properties.Starfish);
 
             // Assert
-            expect(typeof properties.Creature).to.deep.equal("object");
+            expect(properties.Creature).to.be.instanceOf(Array);
         });
 
-        it("changes the array to an object representation", function () {
+        it("changes target to an object representation", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
-
             var properties = mocks.mockPropertyArray();
 
-            //Act
+            // Act
             properties.Starfish = objectMaker.processPropertyArray(properties.Starfish);
 
             // Assert
-            expect(typeof properties.Starfish).to.deep.equal("object");
+            expect(properties.Starfish).to.be.instanceOf(Object);
         });
     };
 });

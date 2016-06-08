@@ -4,48 +4,44 @@ define(["ObjectMakr"], function (ObjectMakrModule) {
 
     var mocks = {
         /**
-         * @returns instance of ObjectMakr.
+         * @returns An instance of ObjectMakr.
          */
         mockObjectMakr: function (settings) {
             return new ObjectMakr(settings || {
-                "inheritance": {
-                    "Animal": {
-                        "Bird":{
-                            "Penguin": {}
+                inheritance: {
+                    Animal: {
+                        Bird:{
+                            Penguin: {}
                         },
-                        "Mammal": {
-                            "Dog": {}
+                        Mammal: {
+                            Dog: {}
                         }
                     }
                 },
-                "properties": {
-                    "Animal": {
-                        "name": "",
-                        "weight": 0,
-                        "age": 0
+                properties: {
+                    Animal: {
+                        name: "",
+                        weight: 0,
+                        age: 0,
+                        wet: false
                     },
-                    "Penguin": {
-                        "onMake": function(penguin){
-                            penguin.name = penguin.name + " the Penguin"
-                        }
-                    },
-                    "Dog": {
-                        "onMake": function(dog){
-                            dog.name = dog.name + " the Fluffy Dog"
+                    Penguin: {
+                        onMake: function (penguin) {
+                            penguin.wet = true;
                         }
                     }
                 },
-                "doPropertiesFull": true,
-                "indexMap": ["name", "weight", "age"],
-                "onMake": "onMake"
+                doPropertiesFull: true,
+                indexMap: ["name", "weight", "age"],
+                onMake: "onMake"
             })
         },       
         /**
-         * Specific class name for tests to use.
+         * A specific class name for tests to use.
          */
         mockClassName: "Penguin",
         /**
-         * @returns an object with characteristic properties
+         * @returns Sample properties for a generated object.
          */
         mockObjectProperties: function () {
             return {
@@ -55,7 +51,7 @@ define(["ObjectMakr"], function (ObjectMakrModule) {
             };
         },
         /**
-         * @returns an inheritance outline 
+         * @returns A small inheritance outline.
          */
         mockInheritance: function () {
             return {
@@ -66,7 +62,7 @@ define(["ObjectMakr"], function (ObjectMakrModule) {
             };
         },
         /**
-         * @returns an object of property arrays
+         * @returns An object of arrays of sample properties.
          */
         mockPropertyArray: function () {
             return {

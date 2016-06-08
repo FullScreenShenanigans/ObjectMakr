@@ -2,10 +2,9 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("parses array elements into object types", function () {
+        it("parses elements into object types", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
-
             var properties = mocks.mockPropertyArray();
 
             // Act

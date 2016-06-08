@@ -2,50 +2,89 @@ define(["mocks"], function (mocks) {
     return function () {
         var expect = require("chai").expect;
 
-        it("copies into the recipient object", function () {
+        it("adds shallow properties to a recipient", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
-
-            var obj1 = {},
-                obj2 = mocks.mockObjectProperties();
+            var recipient = {};
+            var donor = {
+                foo: true,
+                bar: false
+            };
 
             // Act
-            objectMaker.proliferate(obj1, obj2);                
+            objectMaker.proliferate(recipient, donor);
 
             // Assert
-            expect(obj1).to.deep.equal(obj2);
+            expect(donor.foo).to.be.equal(recipient.foo);
+            expect(donor.bar).to.be.equal(recipient.bar);
         });
 
-        it("leaves properties already in the recipient unchanged", function () {
+        it("adds deep copied objects to a recipient", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
-
-            var obj1 = {
-                    height: 5.9
-                },
-                obj2 = mocks.mockObjectProperties();
+            var recipient = {};
+            var donor = {
+                foo: {
+                    bar: true
+                }
+            };
 
             // Act
-            objectMaker.proliferate(obj1, obj2);                
+            objectMaker.proliferate(recipient, donor);
 
             // Assert
-            expect(obj1.height).to.equal(5.9);
+            expect(donor.foo).to.be.deep.equal(recipient.foo);
+            expect(donor.foo).to.not.be.equal(recipient.foo);
         });
 
-        it("leaves donor unchanged", function () {
+        it("adds deep copied arrays to a recipient", function () {
             // Arrange
             var objectMaker = mocks.mockObjectMakr();
-
-            var obj1 = {
-                    height: 5.9
-                },
-                obj2 = mocks.mockObjectProperties();
+            var recipient = {};
+            var donor = {
+                foo: [1, 2, 3]
+            };
 
             // Act
-            objectMaker.proliferate(obj1, obj2);                
+            objectMaker.proliferate(recipient, donor);
 
             // Assert
-            expect(obj2).to.deep.equal(mocks.mockObjectProperties());
+            expect(donor.foo).to.be.deep.equal(recipient.foo);
+            expect(donor.foo).to.not.be.equal(recipient.foo);
+        });
+
+        it("overrides existing properties", function () {
+            // Arrange
+            var objectMaker = mocks.mockObjectMakr();
+            var recipient = {
+                foo: false
+            };
+            var donor = {
+                foo: true
+            };
+
+            // Act
+            objectMaker.proliferate(recipient, donor);
+
+            // Assert
+            expect(donor.foo).to.be.equal(recipient.foo);
+        });
+
+        it("doesn't override existing properties when noOverrides is true", function () {
+            // Arrange
+            var objectMaker = mocks.mockObjectMakr();
+            var recipient = {
+                foo: false
+            };
+            var donor = {
+                foo: true
+            };
+
+            // Act
+            objectMaker.proliferate(recipient, donor, true);
+
+            // Assert
+            expect(donor.foo).to.not.be.equal(recipient.foo);
         });
     };
 });
