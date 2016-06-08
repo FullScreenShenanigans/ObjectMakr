@@ -65,9 +65,7 @@ export interface IObjectMakrSettings {
     onMake?: string;
 
     /**
-     * Optionally, a custom functions mapping of constructors for the classes can be passed in.
-     * Functions passed in would not be redefined by processFunctions. This allows for pre-existing
-     * classes to be manually manipulated.
+     * Optionally, existing classes can be passed in instead of using auto-generated ones.
      */
     functions?: IClassFunctions;
 }
