@@ -17,23 +17,7 @@ define(["mocks"], function (mocks) {
                         },
                         Plant: {}
                     }
-                },
-                properties: {
-                    Animal: {
-                        name: "",
-                        weight: 0,
-                        age: 0,
-                        wet: false
-                    },
-                    Penguin: {
-                        onMake: function (penguin) {
-                            penguin.wet = true;
-                        }
-                    }
-                },
-                doPropertiesFull: true,
-                indexMap: ["name", "weight", "age"],
-                onMake: "onMake"
+                }
             });
             var inheritance = mocks.mockInheritance();
 
@@ -59,23 +43,7 @@ define(["mocks"], function (mocks) {
                         },
                         Plant: {}
                     }
-                },
-                properties: {
-                    Animal: {
-                        name: "",
-                        weight: 0,
-                        age: 0,
-                        wet: false
-                    },
-                    Penguin: {
-                        onMake: function (penguin) {
-                            penguin.wet = true;
-                        }
-                    }
-                },
-                doPropertiesFull: true,
-                indexMap: ["name", "weight", "age"],
-                onMake: "onMake"
+                }
             });
             var inheritance = mocks.mockInheritance();
 
