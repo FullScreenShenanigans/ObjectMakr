@@ -65,7 +65,7 @@ export interface IObjectMakrSettings {
     onMake?: string;
 
     /**
-     * Optionally, existing classes can be passed in instead of using auto-generated ones.
+     * Optionally, existing classes that can be passed in instead of using auto-generated ones.
      */
     functions?: IClassFunctions;
 }
