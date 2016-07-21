@@ -1,4 +1,4 @@
-dist/**
+lib/**
 src/**/*.d.ts
 src/**/*.js*
 node_modules/
