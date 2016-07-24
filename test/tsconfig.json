@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es3",
+        "declaration": false
+    },
+    "files": [
+        "utilities/mocks.ts",
+        "utilities/MochaLoader.ts",
+        "ObjectMakr/make.ts",
+        "ObjectMakr/propertyArray.ts"
+    ]
+}
