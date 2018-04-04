@@ -2,7 +2,6 @@ import { expect } from "chai";
 import { stub } from "sinon";
 
 import { stubObjectMakr } from "./fakes";
-import { IObjectMakr } from "./IObjectMakr";
 
 describe("ObjectMakr", () => {
     describe("make", () => {
